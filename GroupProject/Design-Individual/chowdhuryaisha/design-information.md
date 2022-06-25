@@ -1,0 +1,23 @@
+# Design-information
+1. As a user of the system I want to be able to see each store's offering and the amount of product in stock by square feet.
+To realize this requirement, I added a class called StoreManager which has attributes storeID:int, productName: String, productID: int, and methods searchProduct(productName) to allow users to search product by name, showQuantity(Product, amount) to show the amount of product in stock, addProduct(Store, Product) to allow the user to add product, removeProduct(Store, Product) to allow the user to delete a product from their desired store. This method inherits from another class called Store that has product information for the selected store. 
+2. The application must allow employees to add new products to the system. As well as delete and edit them.
+This requirement is fulfilled using a class Employee that has access to the class called the Store where I added methods addProduct(int productID, String productName) to allow employees to add product, editProduct(int productID) to allow employees to edit a product, deleteProduct(int productID) to allow employees to delete a product, and searchProduct(productName) to allow employees to search a product from the store they work at.
+3. The different categories of floors available are tile, stone, wood, laminate and vinyl
+For this requirement, I added a class called FloorCategory to specify the category of the product using a list and a method addFloorCategory(String floorCategoryName) that allows user to choose their desired category. 
+4. The application must contain a database (DB) of floors.
+Designed but not modeled since its not part of UML guidelines, it will be implemented on the development side.
+5. Users must be able to search for products by picking from a hierarchical list, where the first level is the floor category, and the second level is the floor type.
+When the user goes to invoke the addProduct method there is a class called FloorCategory that has a list of predefined floor categories and a class called FloorMaterialType that has a list of predefined floor material types from which the user can choose from and, at that point there's another class called Product that handles the creation of products as objects.
+6. Users must also be able to specify an item by typing its name (search functionality).
+To realize this requirement, I added a class called StoreManager which has attributes storeID:int, productName: String, productID:int, and the methods searchProduct(productName) to allow users to search product by name. 
+7. All floors regardless of their category have an associated color, size, brand, type and price
+For this requirement, I added a class called Product which has attributes productID:int, name:String, color:String, size:double, brand:String, type:String, category:String, species:String, price:double that handles the creation of products. 
+8. Categories tile and stone have different materials they are made of, e.g. Tile - porcelain, ceramic, resin; Stone-marble, pebble, slate
+To fulfill this requirement, I added a class called FloorMaterialType to specify the type of the product using a list and a method addFloorMaterial(String materialName) that allows users to choose the floor material type. 
+9. Wood floors have both a type (solid, engineered, bamboo, etc) and species (oak, hickory, maple, etc.)
+To fulfill this requirement, I added a class called FloorMaterialType to specify the type of the product using a list and a method addFloorMaterial(String materialName) that allows users to choose the floor material type. To select species I added another class called Species that has a list of species names that can be accessed using the method addWoodSpecies(String woodSpeciesName) that allows users to pick a species. At that point there's another class called Product that handles the creation of products as objects.
+10. Laminate can be regular laminate or water resistant, whereas vinyl can be water resistant or waterproof
+To fulfill this requirement, I added a class called FloorMaterialType to specify the type of the product using a list that includes water resistant, waterproof and regular laminate and a method addFloorMaterial(String materialName) that allows users to pick a flooring material.
+11. The User Interface (UI) must be intuitive and responsive.
+Not considered because it does not affect the design directly.

@@ -1,0 +1,74 @@
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision 029acfbf56515ead77bdf8e17c41f5521adc3179)
++++ /dev/null	(revision 029acfbf56515ead77bdf8e17c41f5521adc3179)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 029acfbf56515ead77bdf8e17c41f5521adc3179)
++++ b/.idea/gradle.xml	(date 1649902979607)
+@@ -7,6 +7,7 @@
+         <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="11" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_add_product.xml\" value=\"0.24048913043478262\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_log_in.xml\" value=\"0.2504528985507246\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_product.xml\" value=\"0.17831813576494426\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_main.xml\" value=\"0.3605072463768116\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_by_name.xml\" value=\"0.22509057971014493\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result_by_store.xml\" value=\"0.17831813576494426\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/search_result_display_recycle_row.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_add_product.xml\" value=\"0.67\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_edit_product.xml\" value=\"0.5541666666666667\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_log_in.xml\" value=\"0.7749546279491834\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_menu.xml\" value=\"0.67\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_main.xml\" value=\"0.5541666666666667\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_recycler_view_adapter.xml\" value=\"0.5541666666666667\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search.xml\" value=\"0.6794354838709677\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result.xml\" value=\"0.47129629629629627\" />\r\n        <entry key=\"..\\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/layout_listitem.xml\" value=\"0.7538071065989848\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 029acfbf56515ead77bdf8e17c41f5521adc3179)
++++ b/.idea/misc.xml	(date 1649901599996)
+@@ -3,31 +3,10 @@
+   <component name="DesignSurface">
+     <option name="filePathToZoomLevelMap">
+       <map>
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_add_product.xml" value="0.24048913043478262" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_log_in.xml" value="0.2504528985507246" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_product.xml" value="0.17831813576494426" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_main.xml" value="0.3605072463768116" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search.xml" value="0.36666666666666664" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_by_name.xml" value="0.22509057971014493" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result.xml" value="0.36666666666666664" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result_by_store.xml" value="0.17831813576494426" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/search_result_display_recycle_row.xml" value="0.36666666666666664" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_add_product.xml" value="0.67" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_edit_product.xml" value="0.5541666666666667" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_log_in.xml" value="0.7749546279491834" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_emp_menu.xml" value="0.67" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_recycler_view_adapter.xml" value="0.5541666666666667" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search.xml" value="0.6794354838709677" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result.xml" value="0.47129629629629627" />
+-        <entry key="..\:/Users/x2089/Desktop/Spring 2022/CS 370/Github/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/layout_listitem.xml" value="0.7538071065989848" />
++        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_edit_product.xml" value="0.14722222222222223" />
+       </map>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
+-  </component>
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file

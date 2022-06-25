@@ -1,0 +1,777 @@
+Index: app/src/main/res/layout/activity_search_edit_result.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".searchEditResultActivity\">\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recyclerView2\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"1dp\"\r\n        android:layout_marginTop=\"1dp\"\r\n        android:layout_marginEnd=\"1dp\"\r\n        android:layout_marginBottom=\"1dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_search_edit_result.xml b/app/src/main/res/layout/activity_search_edit_result.xml
+--- a/app/src/main/res/layout/activity_search_edit_result.xml	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/app/src/main/res/layout/activity_search_edit_result.xml	(date 1651363902610)
+@@ -8,13 +8,20 @@
+ 
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/recyclerView2"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginStart="1dp"
+-        android:layout_marginTop="1dp"
+-        android:layout_marginEnd="1dp"
+-        android:layout_marginBottom="1dp"
+-        app:layout_constraintBottom_toBottomOf="parent"
++        android:layout_width="409dp"
++        android:layout_height="550dp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        tools:layout_editor_absoluteY="48dp" />
++
++    <TextView
++        android:id="@+id/textView27"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="4dp"
++        android:text="Click product to edit"
++        android:textSize="24sp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+Index: app/src/main/java/edu/qc/seclass/fim/RecycleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.qc.seclass.fim;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {\r\n\r\n    Context c;\r\n    ArrayList<String> product_name, product_brand, product_qty, product_store, product_sqft, product_color, product_price, product_type, product_size;\r\n    clickListener listclick;\r\n\r\n\r\n    RecycleAdapter(Context c, ArrayList pn,\r\n                       ArrayList pb, ArrayList qty,\r\n                       ArrayList sqft, ArrayList store,\r\n                       ArrayList pc, ArrayList pp,\r\n                       ArrayList pt, ArrayList ps, clickListener lc) {\r\n        this.c = c;\r\n        product_name = pn;\r\n        product_brand = pb;\r\n        product_qty = qty;\r\n        product_sqft = sqft;\r\n        product_store = store;\r\n        product_color = pc;\r\n        product_price = pp;\r\n        product_type = pt;\r\n        product_size = ps;\r\n        listclick = lc;\r\n    }\r\n\r\n\r\n    @NonNull\r\n    @Override\r\n    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        LayoutInflater inflate = LayoutInflater.from(c);\r\n        return new ViewHolder(inflate.inflate(R.layout.search_result_display_recycle_row, parent, false), listclick);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {\r\n        holder.product_name.setText(String.valueOf(product_name.get(position)));\r\n        holder.product_brand.setText(String.valueOf(product_brand.get(position)));\r\n        holder.product_qty.setText(String.valueOf(product_qty.get(position)));\r\n        holder.product_store.setText(String.valueOf(product_store.get(position)));\r\n        holder.product_sqft.setText(String.valueOf(product_sqft.get(position)));\r\n\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return product_brand.size();\r\n    }\r\n\r\n    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{\r\n        TextView product_name;\r\n        TextView product_brand;\r\n        TextView product_qty;\r\n        TextView product_store;\r\n        TextView product_sqft;\r\n        clickListener listen;\r\n        public ViewHolder(@NonNull View itemView, clickListener l) {\r\n            super(itemView);\r\n            product_name = itemView.findViewById(R.id.product_name);\r\n            product_brand = itemView.findViewById(R.id.product_brand);\r\n            product_qty = itemView.findViewById(R.id.product_qty);\r\n            product_store = itemView.findViewById(R.id.product_store);\r\n            product_sqft = itemView.findViewById(R.id.product_sqft_total);\r\n            listen = l;\r\n            itemView.setOnClickListener(this);\r\n\r\n        }\r\n\r\n        @Override\r\n        public void onClick(View view) {\r\n            listen.onListClick(getAdapterPosition());\r\n        }\r\n    }\r\n    public interface clickListener{\r\n        void onListClick(int pos);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/qc/seclass/fim/RecycleAdapter.java b/app/src/main/java/edu/qc/seclass/fim/RecycleAdapter.java
+--- a/app/src/main/java/edu/qc/seclass/fim/RecycleAdapter.java	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/app/src/main/java/edu/qc/seclass/fim/RecycleAdapter.java	(date 1651363306403)
+@@ -48,7 +48,7 @@
+     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+         holder.product_name.setText(String.valueOf(product_name.get(position)));
+         holder.product_brand.setText(String.valueOf(product_brand.get(position)));
+-        holder.product_qty.setText(String.valueOf(product_qty.get(position)));
++        //holder.product_qty.setText(String.valueOf(product_qty.get(position)));
+         holder.product_store.setText(String.valueOf(product_store.get(position)));
+         holder.product_sqft.setText(String.valueOf(product_sqft.get(position)));
+ 
+@@ -70,7 +70,7 @@
+             super(itemView);
+             product_name = itemView.findViewById(R.id.product_name);
+             product_brand = itemView.findViewById(R.id.product_brand);
+-            product_qty = itemView.findViewById(R.id.product_qty);
++            //product_qty = itemView.findViewById(R.id.product_qty);
+             product_store = itemView.findViewById(R.id.product_store);
+             product_sqft = itemView.findViewById(R.id.product_sqft_total);
+             listen = l;
+Index: app/src/main/res/layout/search_result_display_recycle_row.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:clickable=\"false\"\r\n    android:paddingBottom=\"5dp\">\r\n\r\n    <androidx.cardview.widget.CardView\r\n        android:id=\"@+id/cardView\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"1dp\"\r\n        android:layout_marginEnd=\"1dp\"\r\n        android:layout_marginBottom=\"5dp\"\r\n        app:cardBackgroundColor=\"#CCB0DF\"\r\n        app:cardUseCompatPadding=\"true\"\r\n        app:contentPadding=\"1dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/product_name\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"12dp\"\r\n        android:text=\"Product Name\"\r\n        android:textSize=\"14sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/product_brand\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"3dp\"\r\n        android:text=\"Brand\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintStart_toStartOf=\"@+id/product_name\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/product_name\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/product_qty\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"15dp\"\r\n        android:text=\"Quantity\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/product_store\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:text=\"Store\"\r\n        android:textSize=\"12sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/cardView\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/product_sqft_total\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/product_sqft_total\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"7dp\"\r\n        android:layout_marginEnd=\"1dp\"\r\n        android:text=\"total sqft\"\r\n        app:layout_constraintEnd_toEndOf=\"@+id/product_qty\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/product_qty\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/search_result_display_recycle_row.xml b/app/src/main/res/layout/search_result_display_recycle_row.xml
+--- a/app/src/main/res/layout/search_result_display_recycle_row.xml	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/app/src/main/res/layout/search_result_display_recycle_row.xml	(date 1651363441782)
+@@ -25,7 +25,7 @@
+         android:id="@+id/product_name"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
++        android:layout_marginStart="72dp"
+         android:layout_marginTop="12dp"
+         android:text="Product Name"
+         android:textSize="14sp"
+@@ -42,36 +42,58 @@
+         app:layout_constraintStart_toStartOf="@+id/product_name"
+         app:layout_constraintTop_toBottomOf="@+id/product_name" />
+ 
+-    <TextView
+-        android:id="@+id/product_qty"
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginEnd="15dp"
+-        android:text="Quantity"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
+-
+     <TextView
+         android:id="@+id/product_store"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
++        android:layout_marginStart="72dp"
+         android:layout_marginTop="10dp"
+         android:layout_marginBottom="10dp"
+         android:text="Store"
+         android:textSize="12sp"
+         app:layout_constraintBottom_toTopOf="@+id/cardView"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/product_sqft_total" />
++        app:layout_constraintTop_toBottomOf="@+id/product_sqft_total"
++        app:layout_constraintVertical_bias="0.0" />
+ 
+     <TextView
+         android:id="@+id/product_sqft_total"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="7dp"
+-        android:layout_marginEnd="1dp"
++        android:layout_marginEnd="16dp"
+         android:text="total sqft"
+-        app:layout_constraintEnd_toEndOf="@+id/product_qty"
+-        app:layout_constraintTop_toBottomOf="@+id/product_qty" />
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
++    <TextView
++        android:id="@+id/textView5"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="1dp"
++        android:layout_marginTop="1dp"
++        android:layout_marginBottom="2dp"
++        android:text="Name:"
++        app:layout_constraintBottom_toTopOf="@+id/product_brand"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="@+id/product_name" />
++
++    <TextView
++        android:id="@+id/textView6"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginStart="1dp"
++        android:layout_marginBottom="8dp"
++        android:text="Store:"
++        app:layout_constraintBottom_toTopOf="@+id/cardView"
++        app:layout_constraintStart_toStartOf="parent" />
++
++    <TextView
++        android:id="@+id/textView25"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginEnd="3dp"
++        android:text="Total SQ FT:"
++        app:layout_constraintBaseline_toBaselineOf="@+id/product_sqft_total"
++        app:layout_constraintEnd_toStartOf="@+id/product_sqft_total" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_product_info_page.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".productInfoPageActivity\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/size_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginEnd=\"19dp\"\r\n        android:layout_marginBottom=\"31dp\"\r\n        android:text=\"Size\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/qty_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView20\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView22\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView15\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/qty_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginEnd=\"56dp\"\r\n        android:layout_marginBottom=\"32dp\"\r\n        android:text=\"Qty\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView26\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView24\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView23\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/size_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/price_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginEnd=\"47dp\"\r\n        android:layout_marginBottom=\"326dp\"\r\n        android:text=\"Price\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView21\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/store_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/color_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginEnd=\"14dp\"\r\n        android:layout_marginBottom=\"32dp\"\r\n        android:text=\"Color\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/sqft_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView21\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView20\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView20\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/brand_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginEnd=\"107dp\"\r\n        android:layout_marginBottom=\"42dp\"\r\n        android:text=\"Product Brand\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView20\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView15\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/name_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/name_view\"\r\n        android:layout_width=\"177dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginBottom=\"14dp\"\r\n        android:text=\"Product Name\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/brand_view\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.581\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView13\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView10\"\r\n        android:layout_width=\"174dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginBottom=\"19dp\"\r\n        android:text=\"Product Details\"\r\n        android:textColor=\"@color/black\"\r\n        android:textSize=\"24sp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/store_view\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.523\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/id_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"32dp\"\r\n        android:layout_marginEnd=\"36dp\"\r\n        android:text=\"Product ID\"\r\n        app:layout_constraintBaseline_toBaselineOf=\"@+id/textView12\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/textView13\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView12\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/store_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginTop=\"68dp\"\r\n        android:layout_marginEnd=\"40dp\"\r\n        android:layout_marginBottom=\"149dp\"\r\n        android:text=\"Store ID\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/price_view\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView13\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView12\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginTop=\"68dp\"\r\n        android:layout_marginEnd=\"12dp\"\r\n        android:layout_marginBottom=\"35dp\"\r\n        android:text=\"Product ID:\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView14\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/id_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView13\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"11dp\"\r\n        android:layout_marginBottom=\"35dp\"\r\n        android:text=\"Store ID:\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/name_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/store_view\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/id_view\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/store_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView14\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginBottom=\"21dp\"\r\n        android:text=\"Product Name:\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/textView15\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView12\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView15\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"80dp\"\r\n        android:layout_marginBottom=\"66dp\"\r\n        android:text=\"Brand:\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/size_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/brand_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/textView14\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView20\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"7dp\"\r\n        android:text=\"Color:\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/color_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/color_view\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/size_view\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/brand_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView21\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"13dp\"\r\n        android:text=\"Price:\"\r\n        app:layout_constraintBaseline_toBaselineOf=\"@+id/price_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/price_view\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/color_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView22\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"19dp\"\r\n        android:text=\"Size:\"\r\n        app:layout_constraintBaseline_toBaselineOf=\"@+id/size_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/size_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView23\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"25dp\"\r\n        android:text=\"Qty:\"\r\n        app:layout_constraintBaseline_toBaselineOf=\"@+id/qty_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/qty_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView24\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"35dp\"\r\n        android:text=\"Qty in sq ft:\"\r\n        app:layout_constraintBaseline_toBaselineOf=\"@+id/sqft_view\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/sqft_view\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/qty_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/sqft_view\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginEnd=\"72dp\"\r\n        android:layout_marginBottom=\"47dp\"\r\n        android:text=\"sqft_view\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/floor_view\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView24\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/color_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/textView26\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"16dp\"\r\n        android:layout_marginEnd=\"32dp\"\r\n        android:layout_marginBottom=\"206dp\"\r\n        android:text=\"Floor Type:\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toStartOf=\"@+id/floor_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/qty_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/floor_view\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginEnd=\"126dp\"\r\n        android:layout_marginBottom=\"22dp\"\r\n        android:text=\"floor\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/lam_view\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/textView26\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/sqft_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/wood1_view\"\r\n        android:layout_width=\"163dp\"\r\n        android:layout_height=\"34dp\"\r\n        android:layout_marginStart=\"120dp\"\r\n        android:text=\"wood1\"\r\n        android:visibility=\"invisible\"\r\n        app:layout_constraintBaseline_toBaselineOf=\"@+id/lam_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/lam_view\"\r\n        android:layout_width=\"163dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"120dp\"\r\n        android:text=\"lam\"\r\n        android:visibility=\"invisible\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/stone_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/floor_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/vinyl_view\"\r\n        android:layout_width=\"163dp\"\r\n        android:layout_height=\"34dp\"\r\n        android:layout_marginStart=\"120dp\"\r\n        android:text=\"vinyl\"\r\n        android:visibility=\"invisible\"\r\n        app:layout_constraintBaseline_toBaselineOf=\"@+id/wood1_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/stone_view\"\r\n        android:layout_width=\"163dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"120dp\"\r\n        android:text=\"stone\"\r\n        android:visibility=\"invisible\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/tile_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/lam_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/tile_view\"\r\n        android:layout_width=\"163dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"120dp\"\r\n        android:layout_marginBottom=\"36dp\"\r\n        android:text=\"tile\"\r\n        android:visibility=\"invisible\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/wood2_view\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/stone_view\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/wood2_view\"\r\n        android:layout_width=\"163dp\"\r\n        android:layout_height=\"0dp\"\r\n        android:layout_marginStart=\"116dp\"\r\n        android:layout_marginBottom=\"66dp\"\r\n        android:text=\"wood2\"\r\n        android:visibility=\"invisible\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/tile_view\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_product_info_page.xml b/app/src/main/res/layout/activity_product_info_page.xml
+--- a/app/src/main/res/layout/activity_product_info_page.xml	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/app/src/main/res/layout/activity_product_info_page.xml	(date 1651362714148)
+@@ -8,148 +8,135 @@
+ 
+     <TextView
+         android:id="@+id/size_view"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginEnd="19dp"
+-        android:layout_marginBottom="31dp"
++        android:layout_width="58dp"
++        android:layout_height="33dp"
++        android:layout_marginStart="20dp"
++        android:layout_marginTop="48dp"
+         android:text="Size"
+-        app:layout_constraintBottom_toTopOf="@+id/qty_view"
+         app:layout_constraintEnd_toStartOf="@+id/textView20"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toEndOf="@+id/textView22"
+-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
++        app:layout_constraintTop_toBottomOf="@+id/brand_view" />
+ 
+     <TextView
+         android:id="@+id/qty_view"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginEnd="56dp"
+-        android:layout_marginBottom="32dp"
++        android:layout_width="53dp"
++        android:layout_height="33dp"
++        android:layout_marginStart="12dp"
++        android:layout_marginTop="40dp"
+         android:text="Qty"
+-        app:layout_constraintBottom_toTopOf="@+id/textView26"
+-        app:layout_constraintEnd_toStartOf="@+id/textView24"
+         app:layout_constraintStart_toEndOf="@+id/textView23"
+         app:layout_constraintTop_toBottomOf="@+id/size_view" />
+ 
+     <TextView
+         android:id="@+id/price_view"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginEnd="47dp"
+-        android:layout_marginBottom="326dp"
++        android:layout_width="58dp"
++        android:layout_height="30dp"
++        android:layout_marginEnd="44dp"
+         android:text="Price"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/textView21"
+-        app:layout_constraintTop_toBottomOf="@+id/store_view" />
++        app:layout_constraintBaseline_toBaselineOf="@+id/textView21"
++        app:layout_constraintEnd_toEndOf="parent" />
+ 
+     <TextView
+         android:id="@+id/color_view"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginEnd="14dp"
+-        android:layout_marginBottom="32dp"
++        android:layout_width="58dp"
++        android:layout_height="27dp"
++        android:layout_marginStart="12dp"
++        android:layout_marginTop="76dp"
++        android:layout_marginBottom="78dp"
+         android:text="Color"
+-        app:layout_constraintBottom_toTopOf="@+id/sqft_view"
++        app:layout_constraintBottom_toBottomOf="@+id/qty_view"
+         app:layout_constraintEnd_toStartOf="@+id/textView21"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toEndOf="@+id/textView20"
+-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
++        app:layout_constraintTop_toTopOf="@+id/brand_view" />
+ 
+     <TextView
+         android:id="@+id/brand_view"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginEnd="107dp"
+-        android:layout_marginBottom="42dp"
++        android:layout_width="168dp"
++        android:layout_height="27dp"
++        android:layout_marginStart="8dp"
++        android:layout_marginTop="28dp"
+         android:text="Product Brand"
+-        app:layout_constraintBottom_toTopOf="@+id/textView20"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.067"
+         app:layout_constraintStart_toEndOf="@+id/textView15"
+         app:layout_constraintTop_toBottomOf="@+id/name_view" />
+ 
+     <TextView
+         android:id="@+id/name_view"
+-        android:layout_width="177dp"
+-        android:layout_height="0dp"
+-        android:layout_marginBottom="14dp"
++        android:layout_width="265dp"
++        android:layout_height="26dp"
++        android:layout_marginStart="12dp"
++        android:layout_marginTop="16dp"
+         android:text="Product Name"
+-        app:layout_constraintBottom_toTopOf="@+id/brand_view"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.581"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
++        app:layout_constraintHorizontal_bias="0.017"
++        app:layout_constraintStart_toEndOf="@+id/textView14"
++        app:layout_constraintTop_toBottomOf="@+id/id_view" />
+ 
+     <TextView
+         android:id="@+id/textView10"
+         android:layout_width="174dp"
+-        android:layout_height="0dp"
++        android:layout_height="33dp"
+         android:layout_marginTop="16dp"
+-        android:layout_marginBottom="19dp"
+         android:text="Product Details"
+         android:textColor="@color/black"
+         android:textSize="24sp"
+-        app:layout_constraintBottom_toTopOf="@+id/store_view"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintHorizontal_bias="0.523"
++        app:layout_constraintHorizontal_bias="0.506"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
+ 
+     <TextView
+         android:id="@+id/id_view"
+-        android:layout_width="0dp"
++        android:layout_width="72dp"
+         android:layout_height="32dp"
+-        android:layout_marginEnd="36dp"
++        android:layout_marginEnd="52dp"
+         android:text="Product ID"
+         app:layout_constraintBaseline_toBaselineOf="@+id/textView12"
+-        app:layout_constraintEnd_toStartOf="@+id/textView13"
+-        app:layout_constraintStart_toEndOf="@+id/textView12" />
++        app:layout_constraintEnd_toStartOf="@+id/textView13" />
+ 
+     <TextView
+         android:id="@+id/store_view"
+         android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginTop="68dp"
+-        android:layout_marginEnd="40dp"
+-        android:layout_marginBottom="149dp"
++        android:layout_height="30dp"
++        android:layout_marginEnd="19dp"
+         android:text="Store ID"
+-        app:layout_constraintBottom_toTopOf="@+id/price_view"
++        app:layout_constraintBaseline_toBaselineOf="@+id/textView13"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/textView13"
+-        app:layout_constraintTop_toTopOf="parent" />
++        app:layout_constraintStart_toEndOf="@+id/textView12" />
+ 
+     <TextView
+         android:id="@+id/textView12"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginTop="68dp"
+-        android:layout_marginEnd="12dp"
+-        android:layout_marginBottom="35dp"
++        android:layout_marginTop="16dp"
++        android:layout_marginEnd="194dp"
+         android:text="Product ID:"
+-        app:layout_constraintBottom_toTopOf="@+id/textView14"
+-        app:layout_constraintEnd_toStartOf="@+id/id_view"
++        app:layout_constraintEnd_toStartOf="@+id/store_view"
++        app:layout_constraintHorizontal_bias="0.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+ 
+     <TextView
+         android:id="@+id/textView13"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginEnd="11dp"
+-        android:layout_marginBottom="35dp"
++        android:layout_marginTop="16dp"
++        android:layout_marginEnd="8dp"
+         android:text="Store ID:"
+-        app:layout_constraintBottom_toTopOf="@+id/name_view"
+         app:layout_constraintEnd_toStartOf="@+id/store_view"
+-        app:layout_constraintStart_toEndOf="@+id/id_view"
+-        app:layout_constraintTop_toBottomOf="@+id/store_view" />
++        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+ 
+     <TextView
+         android:id="@+id/textView14"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginBottom="21dp"
++        android:layout_marginTop="28dp"
+         android:text="Product Name:"
+-        app:layout_constraintBottom_toTopOf="@+id/textView15"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textView12" />
+ 
+@@ -158,11 +145,8 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginEnd="80dp"
+-        android:layout_marginBottom="66dp"
++        android:layout_marginTop="36dp"
+         android:text="Brand:"
+-        app:layout_constraintBottom_toTopOf="@+id/size_view"
+-        app:layout_constraintEnd_toStartOf="@+id/brand_view"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/textView14" />
+ 
+@@ -170,110 +154,105 @@
+         android:id="@+id/textView20"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginEnd="7dp"
++        android:layout_marginStart="97dp"
++        android:layout_marginEnd="97dp"
+         android:text="Color:"
+-        app:layout_constraintBottom_toTopOf="@+id/color_view"
+-        app:layout_constraintEnd_toStartOf="@+id/color_view"
+-        app:layout_constraintStart_toEndOf="@+id/size_view"
+-        app:layout_constraintTop_toBottomOf="@+id/brand_view" />
++        app:layout_constraintBaseline_toBaselineOf="@+id/color_view"
++        app:layout_constraintEnd_toEndOf="@+id/textView13"
++        app:layout_constraintStart_toEndOf="@+id/textView23" />
+ 
+     <TextView
+         android:id="@+id/textView21"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginEnd="13dp"
++        android:layout_marginTop="3dp"
++        android:layout_marginEnd="12dp"
+         android:text="Price:"
+-        app:layout_constraintBaseline_toBaselineOf="@+id/price_view"
+         app:layout_constraintEnd_toStartOf="@+id/price_view"
+-        app:layout_constraintStart_toEndOf="@+id/color_view" />
++        app:layout_constraintTop_toTopOf="@+id/color_view" />
+ 
+     <TextView
+         android:id="@+id/textView22"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginEnd="19dp"
++        android:layout_marginTop="56dp"
+         android:text="Size:"
+-        app:layout_constraintBaseline_toBaselineOf="@+id/size_view"
+-        app:layout_constraintEnd_toStartOf="@+id/size_view"
+-        app:layout_constraintStart_toStartOf="parent" />
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+ 
+     <TextView
+         android:id="@+id/textView23"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginStart="16dp"
+-        android:layout_marginEnd="25dp"
++        android:layout_marginTop="52dp"
+         android:text="Qty:"
+-        app:layout_constraintBaseline_toBaselineOf="@+id/qty_view"
+-        app:layout_constraintEnd_toStartOf="@+id/qty_view"
+-        app:layout_constraintStart_toStartOf="parent" />
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+ 
+     <TextView
+         android:id="@+id/textView24"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginEnd="35dp"
++        android:layout_marginStart="56dp"
++        android:layout_marginTop="52dp"
+         android:text="Qty in sq ft:"
+-        app:layout_constraintBaseline_toBaselineOf="@+id/sqft_view"
+         app:layout_constraintEnd_toStartOf="@+id/sqft_view"
+-        app:layout_constraintStart_toEndOf="@+id/qty_view" />
++        app:layout_constraintStart_toEndOf="@+id/qty_view"
++        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+ 
+     <TextView
+         android:id="@+id/sqft_view"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginEnd="72dp"
+-        android:layout_marginBottom="47dp"
++        android:layout_marginTop="1dp"
++        android:layout_marginEnd="88dp"
+         android:text="sqft_view"
+-        app:layout_constraintBottom_toTopOf="@+id/floor_view"
+         app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toEndOf="@+id/textView24"
+-        app:layout_constraintTop_toBottomOf="@+id/color_view" />
++        app:layout_constraintTop_toTopOf="@+id/textView24" />
+ 
+     <TextView
+         android:id="@+id/textView26"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginStart="16dp"
+-        android:layout_marginEnd="32dp"
+-        android:layout_marginBottom="206dp"
++        android:layout_marginStart="24dp"
++        android:layout_marginTop="56dp"
+         android:text="Floor Type:"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toStartOf="@+id/floor_view"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/qty_view" />
++        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+ 
+     <TextView
+         android:id="@+id/floor_view"
+-        android:layout_width="0dp"
+-        android:layout_height="0dp"
+-        android:layout_marginEnd="126dp"
+-        android:layout_marginBottom="22dp"
++        android:layout_width="168dp"
++        android:layout_height="27dp"
++        android:layout_marginStart="24dp"
++        android:layout_marginTop="56dp"
+         android:text="floor"
+-        app:layout_constraintBottom_toTopOf="@+id/lam_view"
+         app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.055"
+         app:layout_constraintStart_toEndOf="@+id/textView26"
+-        app:layout_constraintTop_toBottomOf="@+id/sqft_view" />
++        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+ 
+     <TextView
+         android:id="@+id/wood1_view"
+         android:layout_width="163dp"
+         android:layout_height="34dp"
+-        android:layout_marginStart="120dp"
++        android:layout_marginTop="21dp"
+         android:text="wood1"
+         android:visibility="invisible"
+-        app:layout_constraintBaseline_toBaselineOf="@+id/lam_view"
+-        app:layout_constraintStart_toStartOf="parent" />
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/floor_view" />
+ 
+     <TextView
+         android:id="@+id/lam_view"
+         android:layout_width="163dp"
+-        android:layout_height="0dp"
+-        android:layout_marginStart="120dp"
++        android:layout_height="27dp"
++        android:layout_marginTop="21dp"
+         android:text="lam"
+         android:visibility="invisible"
+-        app:layout_constraintBottom_toTopOf="@+id/stone_view"
++        app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/floor_view" />
+ 
+@@ -281,45 +260,46 @@
+         android:id="@+id/vinyl_view"
+         android:layout_width="163dp"
+         android:layout_height="34dp"
+-        android:layout_marginStart="120dp"
++        android:layout_marginTop="21dp"
+         android:text="vinyl"
+         android:visibility="invisible"
+-        app:layout_constraintBaseline_toBaselineOf="@+id/wood1_view"
+-        app:layout_constraintStart_toStartOf="parent" />
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/floor_view" />
+ 
+     <TextView
+         android:id="@+id/stone_view"
+         android:layout_width="163dp"
+-        android:layout_height="0dp"
+-        android:layout_marginStart="120dp"
++        android:layout_height="27dp"
+         android:text="stone"
+         android:visibility="invisible"
+-        app:layout_constraintBottom_toTopOf="@+id/tile_view"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/lam_view" />
++        app:layout_constraintBaseline_toBaselineOf="@+id/wood1_view"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent" />
+ 
+     <TextView
+         android:id="@+id/tile_view"
+         android:layout_width="163dp"
+-        android:layout_height="0dp"
+-        android:layout_marginStart="120dp"
+-        android:layout_marginBottom="36dp"
++        android:layout_height="27dp"
++        android:layout_marginTop="21dp"
+         android:text="tile"
+         android:visibility="invisible"
+-        app:layout_constraintBottom_toTopOf="@+id/wood2_view"
++        app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/stone_view" />
++        app:layout_constraintTop_toBottomOf="@+id/floor_view" />
+ 
+     <TextView
+         android:id="@+id/wood2_view"
+         android:layout_width="163dp"
+-        android:layout_height="0dp"
+-        android:layout_marginStart="116dp"
+-        android:layout_marginBottom="66dp"
++        android:layout_height="27dp"
++        android:layout_marginTop="90dp"
+         android:text="wood2"
+         android:visibility="invisible"
+         app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.491"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/tile_view" />
++        app:layout_constraintTop_toBottomOf="@+id/floor_view"
++        app:layout_constraintVertical_bias="0.0" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/edu/qc/seclass/fim/editRecycleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.qc.seclass.fim;\r\n\r\nimport android.content.Context;\r\nimport android.content.Intent;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class editRecycleAdapter extends RecyclerView.Adapter<editRecycleAdapter.ViewHolder> {\r\n\r\n    Context c;\r\n    int pos;\r\n    ArrayList<String> product_name, product_brand,\r\n            product_qty, product_store, product_sqft,\r\n            product_color, product_price, product_type, product_size;\r\n    listClickListener listclick;\r\n\r\n    editRecycleAdapter(Context c, ArrayList pn,\r\n                   ArrayList pb, ArrayList qty,\r\n                   ArrayList sqft, ArrayList store,\r\n                       ArrayList pc, ArrayList pp,\r\n                       ArrayList pt, ArrayList ps, listClickListener lc){\r\n        this.c = c;\r\n        product_name = pn;\r\n        product_brand = pb;\r\n        product_qty = qty;\r\n        product_sqft = sqft;\r\n        product_store = store;\r\n        product_color = pc;\r\n        product_price = pp;\r\n        product_type = pt;\r\n        product_size = ps;\r\n        listclick = lc;\r\n\r\n    }\r\n\r\n\r\n    @NonNull\r\n    @Override\r\n    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        LayoutInflater inflate = LayoutInflater.from(c);\r\n        return new ViewHolder(inflate.inflate(R.layout.search_edit_result, parent, false), listclick);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {\r\n        holder.product_name.setText(String.valueOf(product_name.get(position)));\r\n        holder.product_brand.setText(String.valueOf(product_brand.get(position)));\r\n        holder.product_qty.setText(String.valueOf(product_qty.get(position)));\r\n        holder.product_store.setText(String.valueOf(product_store.get(position)));\r\n        holder.product_sqft.setText(String.valueOf(product_sqft.get(position)));\r\n        holder.product_color.setText(String.valueOf(product_color.get(position)));\r\n        holder.product_price.setText(String.valueOf(product_price.get(position)));\r\n        holder.product_type.setText(String.valueOf(product_type.get(position)));\r\n        holder.product_size.setText(String.valueOf(product_size.get(position)));\r\n        /*holder.editResLayout.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Intent i = new Intent(c, editUpdateActivity.class);\r\n                i.putExtra(\"\", String.valueOf(product_name.get(position)));\r\n            }\r\n        });*/\r\n\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return product_brand.size();\r\n    }\r\n\r\n    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{\r\n        TextView product_name;\r\n        TextView product_brand;\r\n        TextView product_qty;\r\n        TextView product_store;\r\n        TextView product_sqft;\r\n        TextView product_color;\r\n        TextView product_price;\r\n        TextView product_type;\r\n        TextView product_size;\r\n        LinearLayout editResLayout;\r\n        listClickListener listen;\r\n\r\n\r\n        public ViewHolder(@NonNull View itemView, listClickListener l) {\r\n            super(itemView);\r\n            product_name = itemView.findViewById(R.id.eProductName);\r\n            product_brand = itemView.findViewById(R.id.ebrand);\r\n            product_qty = itemView.findViewById(R.id.eQty);\r\n            product_store = itemView.findViewById(R.id.eStoreid);\r\n            product_sqft = itemView.findViewById(R.id.eTotQty);\r\n            product_color = itemView.findViewById(R.id.eColor2);\r\n            product_price = itemView.findViewById(R.id.ePrice);\r\n            product_type = itemView.findViewById(R.id.eType);\r\n            product_size = itemView.findViewById(R.id.esize);\r\n            //editResLayout = itemView.findViewById(R.id.updateEditSearchRes);\r\n            listen = l;\r\n\r\n            itemView.setOnClickListener(this);\r\n\r\n        }\r\n\r\n        @Override\r\n        public void onClick(View view) {\r\n            listen.onListClick(getAdapterPosition());\r\n        }\r\n    }\r\n    public interface listClickListener{\r\n        void onListClick(int pos);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/qc/seclass/fim/editRecycleAdapter.java b/app/src/main/java/edu/qc/seclass/fim/editRecycleAdapter.java
+--- a/app/src/main/java/edu/qc/seclass/fim/editRecycleAdapter.java	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/app/src/main/java/edu/qc/seclass/fim/editRecycleAdapter.java	(date 1651363154828)
+@@ -16,7 +16,6 @@
+ public class editRecycleAdapter extends RecyclerView.Adapter<editRecycleAdapter.ViewHolder> {
+ 
+     Context c;
+-    int pos;
+     ArrayList<String> product_name, product_brand,
+             product_qty, product_store, product_sqft,
+             product_color, product_price, product_type, product_size;
+@@ -28,6 +27,7 @@
+                        ArrayList pc, ArrayList pp,
+                        ArrayList pt, ArrayList ps, listClickListener lc){
+         this.c = c;
++
+         product_name = pn;
+         product_brand = pb;
+         product_qty = qty;
+@@ -60,13 +60,6 @@
+         holder.product_price.setText(String.valueOf(product_price.get(position)));
+         holder.product_type.setText(String.valueOf(product_type.get(position)));
+         holder.product_size.setText(String.valueOf(product_size.get(position)));
+-        /*holder.editResLayout.setOnClickListener(new View.OnClickListener() {
+-            @Override
+-            public void onClick(View view) {
+-                Intent i = new Intent(c, editUpdateActivity.class);
+-                i.putExtra("", String.valueOf(product_name.get(position)));
+-            }
+-        });*/
+ 
+     }
+ 
+@@ -85,7 +78,6 @@
+         TextView product_price;
+         TextView product_type;
+         TextView product_size;
+-        LinearLayout editResLayout;
+         listClickListener listen;
+ 
+ 
+Index: app/src/main/res/layout/activity_search_result.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".searchResultActivity\">\r\n\r\n    <androidx.recyclerview.widget.RecyclerView\r\n        android:id=\"@+id/recyclerView\"\r\n        android:layout_width=\"409dp\"\r\n        android:layout_height=\"601dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_search_result.xml b/app/src/main/res/layout/activity_search_result.xml
+--- a/app/src/main/res/layout/activity_search_result.xml	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/app/src/main/res/layout/activity_search_result.xml	(date 1651363902613)
+@@ -6,12 +6,24 @@
+     android:layout_height="match_parent"
+     tools:context=".searchResultActivity">
+ 
++    <TextView
++        android:id="@+id/textView28"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="4dp"
++        android:text="Click Product for more details"
++        android:textSize="24sp"
++        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent" />
++
+     <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/recyclerView"
+         android:layout_width="409dp"
+-        android:layout_height="601dp"
++        android:layout_height="0dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_add_product.xml\" value=\"0.5\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_del_product.xml\" value=\"0.2151268115942029\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_edit_product.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_edit_update.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_product_info_page.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_edit_result.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/search_edit_result.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/search_result_display_recycle_row.xml\" value=\"0.5\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"11\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/.idea/misc.xml	(date 1651363510773)
+@@ -7,8 +7,8 @@
+         <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_del_product.xml" value="0.2151268115942029" />
+         <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_edit_product.xml" value="0.33" />
+         <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_edit_update.xml" value="0.33" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_product_info_page.xml" value="0.33" />
+-        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_edit_result.xml" value="0.36666666666666664" />
++        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_product_info_page.xml" value="0.5" />
++        <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_edit_result.xml" value="0.33" />
+         <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/activity_search_result.xml" value="0.36666666666666664" />
+         <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/search_edit_result.xml" value="0.33" />
+         <entry key="..\:/370Group/370Spring22Sec57Team3/GroupProject/FIM/app/src/main/res/layout/search_result_display_recycle_row.xml" value="0.5" />
+Index: app/src/main/java/edu/qc/seclass/fim/DBO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.qc.seclass.fim;\r\n\r\nimport android.content.ContentValues;\r\nimport android.content.Context;\r\nimport android.database.Cursor;\r\nimport android.database.sqlite.SQLiteDatabase;\r\nimport android.database.sqlite.SQLiteOpenHelper;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.Nullable;\r\n\r\npublic class DBO extends SQLiteOpenHelper {\r\n\r\n\r\n    public DBO(@Nullable Context context) {\r\n        super(context, \"fimDB\", null, 1);\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(SQLiteDatabase sqLiteDatabase) {\r\n\r\n        //creating the employee table to check credentials on first creation\r\n        sqLiteDatabase.execSQL(\"CREATE TABLE emp_credentials(emp_key INTEGER PRIMARY KEY AUTOINCREMENT, \" +\r\n                                                            \"emp_id TEXT, \" +\r\n                                                            \"emp_pw TEXT)\");\r\n\r\n        //adds admin column to the employee table\r\n        ContentValues contentValues = new ContentValues();\r\n        contentValues.put(\"emp_id\", \"admin\");\r\n        contentValues.put(\"emp_pw\", \"admin\");\r\n        sqLiteDatabase.insert(\"emp_credentials\", null, contentValues);\r\n\r\n        //creating the stock table\r\n        sqLiteDatabase.execSQL(\"CREATE TABLE stock_table(stock_key INTEGER PRIMARY KEY AUTOINCREMENT, \" +\r\n                \"product_id TEXT, \" +\r\n                \"product_name TEXT, \" +\r\n                \"color TEXT, \" +\r\n                \"size_sq_ft NUMERIC(10,2), \" +\r\n                \"price NUMERIC(10,2), \" +\r\n                \"brand TEXT, \" +\r\n                \"type TEXT, \" +\r\n                \"store_id INT, \" +\r\n                \"qty INT, \" +\r\n                \"wood_type TEXT, \" +\r\n                \"wood_species TEXT, \" +\r\n                \"stone_material TEXT, \" +\r\n                \"water_resistant TEXT,\" +\r\n                \"water_proof TEXT, \" +\r\n                \"tile_material TEXT)\");\r\n\r\n        //adding sample data, will add more later\r\n        ContentValues cv2 = new ContentValues();\r\n        cv2.put(\"product_id\", 101);\r\n        cv2.put(\"product_name\", \"Graystone Tavertine Porcelain Tile\");\r\n        cv2.put(\"color\", \"Grey\");\r\n        cv2.put(\"size_sq_ft\", 11.52);\r\n        cv2.put(\"price\", 16.01);\r\n        cv2.put(\"brand\", \"Avella\");\r\n        cv2.put(\"type\", \"Tile\");\r\n        cv2.put(\"store_id\", 1001);\r\n        cv2.put(\"qty\", 254);\r\n        cv2.put(\"tile_material\", \"Porcelain\");\r\n        sqLiteDatabase.insert(\"stock_table\", null, cv2);\r\n\r\n\r\n    }\r\n\r\n    //method for versioning\r\n    @Override\r\n    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {\r\n        sqLiteDatabase.execSQL(\"DROP TABLE IF EXISTS test_tab\");\r\n        onCreate(sqLiteDatabase);\r\n\r\n    }\r\n\r\n    //method to check if the id and password matches any rows in the employee table\r\n    public boolean checkEmpCredentials(String id, String pw) {\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        Cursor c = readDB.rawQuery(\"SELECT emp_id \" +\r\n                        \"FROM emp_credentials \" +\r\n                        \"WHERE emp_id = ? AND emp_pw = ?\",\r\n                new String[]{id, pw}, null);\r\n        int x = c.getCount();\r\n        c.close();\r\n        return x != 0;\r\n    }\r\n\r\n    /*below are all the search functions required for the search activity, a cursor will be returned\r\n    for you to pull data out of and display. Refer to diagram to link up text boxes with search methods*/\r\n\r\n    //flag type 1 used search results\r\n    public Cursor searchByName(String searchPhrase){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        //Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table\", null);\r\n\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                                        \"WHERE product_name LIKE ? OR brand LIKE ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\"}, null);\r\n\r\n        return c;\r\n    }\r\n    //flag type 2 used search results\r\n    public Cursor searchByType(String searchType){\r\n\r\n        Cursor c = searchQ1Internal(\"type\", String.valueOf(searchType));\r\n        return c;\r\n    }\r\n    //flag type 3 used search results\r\n    public Cursor searchByStore(int searchStore){\r\n\r\n        Cursor c = searchQ1Internal(\"store_id\", String.valueOf(searchStore));\r\n        return c;\r\n    }\r\n\r\n    //2searches with 2 text boxes filled in\r\n    //Search by Name and Type\r\n    //flag type 4 used search results\r\n    public Cursor searchNameType(String searchPhrase, String searchType){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE (product_name LIKE ? OR brand LIKE ?) AND type = ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\", searchType}, null);\r\n        return c;\r\n    }\r\n    //2 searches\r\n    //Search by Name and store\r\n    //flag type 5 used search results\r\n    public Cursor searchNameStore(String searchPhrase, int searchStore){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE (product_name LIKE ? OR brand LIKE ?) AND store_id = ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\", String.valueOf(searchStore)}, null);\r\n        return c;\r\n    }\r\n    //2 searches\r\n    //Search by Type and store\r\n    //flag type 6 used search results\r\n    public Cursor searchTypeStore(String searchType, int searchStore){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE type LIKE ?  AND store_id = ?\",\r\n                new String[]{searchType, String.valueOf(searchStore)}, null);\r\n        return c;\r\n    }\r\n    //searches with 3 text boxes filled in\r\n    //2 search by Type Category\r\n    //flag type 7 used search results\r\n    public Cursor searchTypeCategory(String searchType, String catCol, String searchCat){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE type = ? AND \" + catCol + \" = ?\",\r\n                new String[]{ searchType, searchCat}, null);\r\n        return c;\r\n    }\r\n    //searches with 3 text boxes filled in****\r\n    //2 search by Type Category but with wood\r\n    //flag type 8 used search results\r\n    public Cursor searchTypeCategoryWood2(String searchType, String catCol1, String searchCat1, String catCol2, String searchCat2){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE type = ? AND \" + catCol1 + \" = ? AND \" + catCol2 + \" = ?\",\r\n                new String[]{ searchType, searchCat1, searchCat2}, null);\r\n        return c;\r\n    }\r\n\r\n    //searches with 3 text boxes filled in***\r\n    //3 search by Name Type Category**\r\n    //flag type 9 used search results\r\n    public Cursor searchNameTypeCategory(String searchPhrase, String searchType, String catCol, String searchCat){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE (product_name LIKE ? OR brand LIKE ?) AND type = ? AND \" + catCol + \" = ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\", searchType, searchCat}, null);\r\n        return c;\r\n    }\r\n\r\n    //searches with 3 text boxes filled in\r\n    //3 search by Name Type Category for wood**\r\n    //flag type 10 used search results\r\n    public Cursor searchNameTypeCategoryWood(String searchPhrase, String searchType, String catCol1, String searchCat1, String catCol2, String searchCat2){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE (product_name LIKE ? OR brand LIKE ?) AND type = ? AND \" +catCol1 + \" = ? AND \" + catCol2 + \" = ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\", searchType, searchCat1, searchCat2}, null);\r\n        return c;\r\n    }\r\n\r\n    //3 searches\r\n    //Search by Name Type and Store**\r\n    //flag type 11 used search results\r\n    public Cursor searchNameTypeStore(String searchPhrase, String searchType, int searchStore){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE (product_name LIKE ? OR brand LIKE ?) AND type = ? AND store_id = ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\", searchType, String.valueOf(searchStore)}, null);\r\n        return c;\r\n    }\r\n\r\n    //searches with 3 text boxes filled in\r\n    //3 search by Type Category Store\r\n    //flag type 12 used search results\r\n    public Cursor searchTypeCategoryStore(String searchType, String catCol, String searchCat, int searchStore){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE type = ? AND \" + catCol + \" = ? AND store_id = ?\",\r\n                new String[]{searchType, searchCat, String.valueOf(searchStore)}, null);\r\n        return c;\r\n    }\r\n    //searches with 3 text boxes filled in\r\n    //3 search by Type Category Store for WOOD\r\n    //flag type 13 used search results\r\n    public Cursor searchTypeCategoryStoreWood(String searchType, String catCol1, String searchCat1,String catCol2, String searchCat2, int searchStore){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE type = ? AND store AND type = ? AND \" +catCol1 + \" = ? AND \" + catCol2 + \" = ? AND store_id = ?\",\r\n                new String[]{searchType, searchCat1, searchCat2, String.valueOf(searchStore)}, null);\r\n        return c;\r\n    }\r\n\r\n\r\n    //searches with all text boxes filled in\r\n    //flag type 14 used search results*\r\n    //with wood\r\n    public Cursor searchNameTypeCategoryStore(String searchPhrase, String searchType, String catCol, String searchCat, int searchStore){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE (product_name LIKE ? OR brand LIKE ?) AND type = ? AND \" + catCol + \" = ? AND store_id = ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\", searchType, searchCat, String.valueOf(searchStore)}, null);\r\n        return c;\r\n    }\r\n    //searches with all text boxes filled in\r\n    //flag type 15 used search results\r\n    public Cursor searchNameTypeCategoryStoreWood(String searchPhrase, String searchType, String catCol1, String searchCat1, String catCol2, String searchCat2, int searchStore){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                        \"WHERE (product_name LIKE ? OR brand LIKE ?) AND type = ? AND \" +catCol1 + \" = ? AND \" + catCol2 + \" = ? AND store_id = ?\",\r\n                new String[]{\"%\" + searchPhrase + \"%\", \"%\" + searchPhrase + \"%\", searchType, searchCat1, searchCat2, String.valueOf(searchStore)}, null);\r\n        return c;\r\n    }\r\n\r\n    public long addRow(String proId,\r\n                                String name,\r\n                                String color,\r\n                                String size,\r\n                                String price,\r\n                                String brand,\r\n                                String floor,\r\n                                String store,\r\n                                String qty,\r\n                                String wood1,\r\n                                String wood2,\r\n                                String stone1,\r\n                                String lam1,\r\n                                String vinyl1,\r\n                                String tile1){\r\n        SQLiteDatabase writeDB = this.getWritableDatabase();\r\n\r\n        ContentValues contentValues = new ContentValues();\r\n        contentValues.put(\"product_id\", proId);\r\n        contentValues.put(\"product_name\", name);\r\n        contentValues.put(\"color\", color);\r\n        contentValues.put(\"size_sq_ft\", Double.parseDouble(size));\r\n        contentValues.put(\"price\", Double.parseDouble(price));\r\n        contentValues.put(\"brand\", brand);\r\n        contentValues.put(\"type\", floor);\r\n        contentValues.put(\"store_id\", String.valueOf(store));\r\n        contentValues.put(\"qty\", String.valueOf(qty));\r\n        contentValues.put(\"wood_type\", wood1);\r\n        contentValues.put(\"wood_species\", wood2);\r\n        contentValues.put(\"stone_material\", stone1);\r\n        contentValues.put(\"water_resistant\", lam1);\r\n        contentValues.put(\"water_proof\", vinyl1);\r\n        contentValues.put(\"tile_material\", tile1);\r\n        long res = writeDB.insert(\"stock_table\", null,contentValues);\r\n\r\n        return res;\r\n\r\n    }\r\n\r\n    long deleteProduct(String prod_ID, String store_id) {\r\n        SQLiteDatabase db = this.getWritableDatabase();\r\n        return db.delete(\"stock_table\", \"product_id = ? AND store_id = ?\", new String[] {prod_ID, String.valueOf(store_id)});\r\n    }\r\n    long updateProduct(String proId,\r\n                       String name,\r\n                       String color,\r\n                       String size,\r\n                       String price,\r\n                       String brand,\r\n                       String floor,\r\n                       String store,\r\n                       String qty,\r\n                       String wood1,\r\n                       String wood2,\r\n                       String stone1,\r\n                       String lam1,\r\n                       String vinyl1,\r\n                       String tile1,\r\n                       int stk_k){\r\n        SQLiteDatabase db = this.getWritableDatabase();\r\n        ContentValues contentValues = new ContentValues();\r\n        contentValues.put(\"product_id\", proId);\r\n        contentValues.put(\"product_name\", name);\r\n        contentValues.put(\"color\", color);\r\n        contentValues.put(\"size_sq_ft\", Double.parseDouble(size));\r\n        contentValues.put(\"price\", Double.parseDouble(price));\r\n        contentValues.put(\"brand\", brand);\r\n        contentValues.put(\"type\", floor);\r\n        contentValues.put(\"store_id\", String.valueOf(store));\r\n        contentValues.put(\"qty\", String.valueOf(qty));\r\n        contentValues.put(\"wood_type\", wood1);\r\n        contentValues.put(\"wood_species\", wood2);\r\n        contentValues.put(\"stone_material\", stone1);\r\n        contentValues.put(\"water_resistant\", lam1);\r\n        contentValues.put(\"water_proof\", vinyl1);\r\n        contentValues.put(\"tile_material\", tile1);\r\n        long res = db.update(\"stock_table\", contentValues,\"stock_key = ? \", new String[] {String.valueOf(stk_k)});\r\n        return res;\r\n\r\n    }\r\n\r\n//do not use\r\n    private Cursor searchQ1Internal(String col, String uInput){\r\n        SQLiteDatabase readDB = this.getReadableDatabase();\r\n        if(readDB == null){\r\n            return null;\r\n        }\r\n        Cursor c = readDB.rawQuery(\"SELECT * FROM stock_table \" +\r\n                \"WHERE \" + col + \" = ?\", new String[] {String.valueOf(uInput)}, null);\r\n\r\n        return c;\r\n    }\r\n\r\n}\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/edu/qc/seclass/fim/DBO.java b/app/src/main/java/edu/qc/seclass/fim/DBO.java
+--- a/app/src/main/java/edu/qc/seclass/fim/DBO.java	(revision 71cfeb16021068e571998a7ef9a8eaa266e35e93)
++++ b/app/src/main/java/edu/qc/seclass/fim/DBO.java	(date 1651360809701)
+@@ -62,6 +62,60 @@
+         cv2.put("tile_material", "Porcelain");
+         sqLiteDatabase.insert("stock_table", null, cv2);
+ 
++        ContentValues cv3 = new ContentValues();
++        cv3.put("product_id", 102);
++        cv3.put("product_name", "Bianco Venato Marble");
++        cv3.put("color", "White");
++        cv3.put("size_sq_ft", 5);
++        cv3.put("price", 69.99);
++        cv3.put("brand", "Tilefornia");
++        cv3.put("type", "Stone");
++        cv3.put("store_id", 1002);
++        cv3.put("qty", 77);
++        cv3.put("stone_material", "Marble");
++        sqLiteDatabase.insert("stock_table", null, cv3);
++
++        ContentValues cv4 = new ContentValues();
++        cv4.put("product_id", 103);
++        cv4.put("product_name", "Duravana Hybrid Resilient Flooring");
++        cv4.put("color", "Blonde");
++        cv4.put("size_sq_ft", 23.92);
++        cv4.put("price", 81.09);
++        cv4.put("brand", "Duravana");
++        cv4.put("type", "Wood");
++        cv4.put("store_id", 1003);
++        cv4.put("qty", 57);
++        cv4.put("wood_type", "Hybrid");
++        cv4.put("wood_species", "Oak");
++        sqLiteDatabase.insert("stock_table", null, cv4);
++
++        ContentValues cv5 = new ContentValues();
++        cv5.put("product_id", 104);
++        cv5.put("product_name", "Mont-Blanc Pine WaterResist Rigid Plank Flooring");
++        cv5.put("color", "White");
++        cv5.put("size_sq_ft", 28.52);
++        cv5.put("price", 65.03);
++        cv5.put("brand", "CoreLuxe");
++        cv5.put("type", "Laminate");
++        cv5.put("store_id", 1003);
++        cv5.put("qty", 94);
++        cv5.put("water_resistant", "Water Resistant");
++        sqLiteDatabase.insert("stock_table", null, cv5);
++
++        ContentValues cv6 = new ContentValues();
++        cv6.put("product_id", 105);
++        cv6.put("product_name", "Luminescent Sky Marble Luxury Vinyl Tile");
++        cv6.put("color", "White");
++        cv6.put("size_sq_ft", 20.69);
++        cv6.put("price", 72.18);
++        cv6.put("brand", "Lifeproof");
++        cv6.put("type", "Vinyl");
++        cv6.put("store_id", 1001);
++        cv6.put("qty", 65);
++        cv6.put("water_proof", "Waterproof");
++        sqLiteDatabase.insert("stock_table", null, cv6);
++
++
+ 
+     }
+ 
